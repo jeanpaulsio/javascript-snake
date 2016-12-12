@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Share+Tech+Mono");
+@import url("https://fonts.googleapis.com/css?family=Orbitron");
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
   margin: 0;
   padding: 0;
@@ -40,16 +40,15 @@ html, body {
   height: 100%;
   width: 100%;
   background-color: #c0c0c0;
-  font-family: 'Share Tech Mono', monospace;
+  font-family: 'Orbitron', sans-serif;
   font-size: 16px; }
 
 header {
   margin: auto;
   text-align: center;
-  color: #000; }
+  color: #3a3939; }
   header h1 {
-    font-size: 4rem;
-    text-shadow: -2px -2px 0 #eaeaea, -2px -1px 0 #eaeaea, -2px 0px 0 #eaeaea, -2px 1px 0 #eaeaea, -2px 2px 0 #eaeaea, -1px -2px 0 #eaeaea, -1px -1px 0 #eaeaea, -1px 0px 0 #eaeaea, -1px 1px 0 #eaeaea, -1px 2px 0 #eaeaea, 0px -2px 0 #eaeaea, 0px -1px 0 #eaeaea, 0px 0px 0 #eaeaea, 0px 1px 0 #eaeaea, 0px 2px 0 #eaeaea, 1px -2px 0 #eaeaea, 1px -1px 0 #eaeaea, 1px 0px 0 #eaeaea, 1px 1px 0 #eaeaea, 1px 2px 0 #eaeaea, 2px -2px 0 #eaeaea, 2px -1px 0 #eaeaea, 2px 0px 0 #eaeaea, 2px 1px 0 #eaeaea, 2px 2px 0 #eaeaea; }
+    font-size: 4rem; }
 
 #score {
   display: flex;
@@ -60,20 +59,24 @@ header {
   background-color: #eaeaea; }
   #score p.score {
     font-size: 1rem;
-    background-color: #fff;
+    color: #00ff00;
+    background-color: #3a3939;
     border: 3px solid #000;
-    padding: 10px; }
+    padding: 10px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
   #score p.text {
     font-size: 1rem;
     padding: 10px;
-    border: 3px solid transparent; }
+    border: 3px solid transparent;
+    color: #3a3939; }
 
 .container {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
   width: 300px;
-  margin: auto; }
+  margin: auto;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
 
 .box {
   height: 10px;
@@ -108,10 +111,11 @@ header {
     padding: 10px;
     margin: 5px;
     border: 2px solid #000; }
-    .controls i:active {
-      background-color: #000;
-      color: #ffff00;
-      border: 2px solid #eaeaea; }
+  .controls .active {
+    background-color: #000;
+    color: #ffff00;
+    text-shadow: 0 -2px 0 #afaf00;
+    border: 2px solid #eaeaea; }
 
 @media (max-width: 400px) {
   header {

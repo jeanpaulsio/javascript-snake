@@ -4,22 +4,21 @@
 @import 'sizes';
 @import 'stroke';
 
-@import url('https://fonts.googleapis.com/css?family=Share+Tech+Mono');
+@import url('https://fonts.googleapis.com/css?family=Orbitron');
 
 html, body {
   height: 100%;
   width: 100%;
   background-color: $gray;
-  font-family: 'Share Tech Mono', monospace;
+  font-family: 'Orbitron', sans-serif;
   font-size: 16px;
 }
 header {
   margin: auto;
   text-align: center;
-  color: $black;
+  color: $dark-gray;
   h1 {
     font-size: 4rem;
-    @include stroke(2, $light-gray);
   }
 }
 #score {
@@ -31,14 +30,17 @@ header {
   background-color: $light-gray;
   p.score {
     font-size: 1rem;
-    background-color: $white;
+    color: $green;
+    background-color: $dark-gray;
     border: 3px solid $black;
     padding: 10px;
+    @include shadow(2);
   }
   p.text {
     font-size: 1rem;
     padding: 10px;
     border: 3px solid transparent;
+    color: $dark-gray;
   }
 }
 .container {
@@ -47,6 +49,7 @@ header {
   align-items: flex-start;
   width: $container-length;
   margin: auto;
+  @include shadow(2);
 }
 .box {
   height: $square-length;
@@ -81,11 +84,12 @@ header {
     padding: 10px;
     margin: 5px;
     border: 2px solid $black;
-    &:active {
+  }
+  .active {
       background-color: $black;
       color: $yellow;
+      text-shadow: 0 -2px 0 $dark-yellow;
       border: 2px solid $light-gray;
-    }
   }
 }
 

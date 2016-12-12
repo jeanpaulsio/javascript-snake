@@ -67,5 +67,20 @@ $(document).ready(function(){
       $(".container").append('<div class="box"></div>');
     }
   }
+});
 
+$(document).keydown(function(e){
+  if(e.keyCode == 37){
+    $(".fa").removeClass("active");
+    $(".fa-arrow-left").toggleClass("active");
+  } else if(e.keyCode == 38){
+    $(".fa").removeClass("active");
+    $(".fa-arrow-up").toggleClass("active");
+  } else if(e.keyCode == 39){
+    $(".fa").removeClass("active");
+    $(".fa-arrow-right").toggleClass("active");
+  } else if(e.keyCode == 40){
+    $(".fa").removeClass("active");
+    $(".fa-arrow-down").toggleClass("active");
+  }
 });
