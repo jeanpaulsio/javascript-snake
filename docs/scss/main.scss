@@ -1,12 +1,16 @@
+@import 'reset';
+@import 'mixins';
+
 body {
-	background: gray;
-	color: white;
+  background: gray;
+  color: white;
 }
 #container {
   width: 400px;
   height: 400px;
   position: relative;
   background: white;
+  @include shadow(5);
 }
 #animate {
   width: 50px;

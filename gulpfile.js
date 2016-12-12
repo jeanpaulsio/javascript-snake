@@ -14,11 +14,11 @@ gulp.task('scripts', function(){
   return gulp.src('docs/scripts/*.js')
     .pipe(concat('main.js'))
     .pipe(gulp.dest('docs/js'))
-    .pipe(reload({ stream:true }));;
+    .pipe(reload({ stream:true }));
 });
 
 // watch Sass files for changes, run the Sass preprocessor with the 'sass' task and reload
-gulp.task('serve', ['sass', 'scripts'], function() {
+gulp.task('s', ['sass', 'scripts'], function() {
   browserSync({
     server: {
       baseDir: 'docs'
