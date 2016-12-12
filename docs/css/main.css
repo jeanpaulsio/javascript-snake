@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Share+Tech+Mono");
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
   margin: 0;
   padding: 0;
@@ -37,22 +38,24 @@ Google Material Design Box Shadows
 */
 html, body {
   height: 100%;
-  width: 100%; }
+  width: 100%;
+  background-color: #c0c0c0;
+  font-family: 'Share Tech Mono', monospace; }
 
 .container {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
-  width: 400px;
+  width: 300px;
   margin: auto;
   border: 15px solid #0000ff; }
 
 .box {
-  height: 13.33333px;
-  width: 13.33333px;
+  height: 10px;
+  width: 10px;
   display: block;
   float: left;
-  outline: 1px solid #666;
+  outline: 1px solid #000;
   background-color: #000; }
 
 /* Media Queries

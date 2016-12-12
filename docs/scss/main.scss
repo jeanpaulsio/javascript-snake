@@ -1,28 +1,15 @@
 @import 'reset';
 @import 'mixins';
+@import 'colors';
+@import 'sizes';
+@import url('https://fonts.googleapis.com/css?family=Share+Tech+Mono');
 
 html, body {
   height: 100%;
-   width: 100%;
+  width: 100%;
+  background-color: $gray;
+  font-family: 'Share Tech Mono', monospace;
 }
-
-$blue: #0000ff;
-$black: #000;
-$white: #fff;
-$red: #ff0000;
-$yellow: #ffff00;
-$green: #00ff00;
-
- $mobile-xs: 400px;
-    $mobile: 481px;
-    $tablet: 641px;
-$desktop-sm: 961px;
-$desktop-lg: 1025px;
-$desktop-xl: 1281px;
-
-$container-length: 400px;
- $squares-per-row: 30;
-   $square-length: $container-length / $squares-per-row;
 
 .container {
   display: flex;
@@ -37,7 +24,7 @@ $container-length: 400px;
   width: $square-length;
   display: block;
   float: left;
-  outline: 1px solid #666;
+  outline: 1px solid $black;
   background-color: $black;
 }
 

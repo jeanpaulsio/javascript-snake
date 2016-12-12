@@ -1,0 +1,10 @@
+ $mobile-xs: 400px;
+    $mobile: 481px;
+    $tablet: 641px;
+$desktop-sm: 961px;
+$desktop-lg: 1025px;
+$desktop-xl: 1281px;
+
+$container-length: 300px;
+ $squares-per-row: 30;
+   $square-length: $container-length / $squares-per-row;
