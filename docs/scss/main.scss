@@ -18,7 +18,7 @@ header {
   text-align: center;
   color: $dark-gray;
   h1 {
-    font-size: 4rem;
+    font-size: 3rem;
   }
 }
 #score {
@@ -57,6 +57,7 @@ header {
   display: block;
   float: left;
   background-color: $black;
+  outline: 1px solid $black;
 }
 .edge {
   background-color: $blue;
@@ -68,6 +69,7 @@ header {
 .snake-body {
   background-color: $dark-yellow;
   box-shadow: 0 -2px 0 $yellow;
+  outline: 1px solid $dark-yellow;
 }
 .controls {
   font-size: 1.5rem;

@@ -48,12 +48,12 @@ header {
   text-align: center;
   color: #3a3939; }
   header h1 {
-    font-size: 4rem; }
+    font-size: 3rem; }
 
 #score {
   display: flex;
   justify-content: flex-end;
-  width: 300px;
+  width: 310px;
   margin: auto;
   line-height: 1.5;
   background-color: #eaeaea; }
@@ -74,7 +74,7 @@ header {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
-  width: 300px;
+  width: 310px;
   margin: auto;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
 
@@ -83,7 +83,8 @@ header {
   width: 10px;
   display: block;
   float: left;
-  background-color: #000; }
+  background-color: #000;
+  outline: 1px solid #000; }
 
 .edge {
   background-color: #0000ff; }
@@ -94,14 +95,15 @@ header {
 
 .snake-body {
   background-color: #afaf00;
-  box-shadow: 0 -2px 0 #ffff00; }
+  box-shadow: 0 -2px 0 #ffff00;
+  outline: 1px solid #afaf00; }
 
 .controls {
   font-size: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 300px;
+  width: 310px;
   margin: auto;
   color: #eaeaea; }
   .controls i {
