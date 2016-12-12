@@ -39,7 +39,7 @@ Google Material Design Box Shadows
 html, body {
   height: 100%;
   width: 100%;
-  background-color: #eaeaea;
+  background-color: #c0c0c0;
   font-family: 'Share Tech Mono', monospace;
   font-size: 16px; }
 
@@ -48,7 +48,8 @@ header {
   text-align: center;
   color: #00ff00; }
   header h1 {
-    font-size: 4rem; }
+    font-size: 4rem;
+    text-shadow: -2px -2px 0 #000, -2px -1px 0 #000, -2px 0px 0 #000, -2px 1px 0 #000, -2px 2px 0 #000, -1px -2px 0 #000, -1px -1px 0 #000, -1px 0px 0 #000, -1px 1px 0 #000, -1px 2px 0 #000, 0px -2px 0 #000, 0px -1px 0 #000, 0px 0px 0 #000, 0px 1px 0 #000, 0px 2px 0 #000, 1px -2px 0 #000, 1px -1px 0 #000, 1px 0px 0 #000, 1px 1px 0 #000, 1px 2px 0 #000, 2px -2px 0 #000, 2px -1px 0 #000, 2px 0px 0 #000, 2px 1px 0 #000, 2px 2px 0 #000; }
 
 #score {
   display: flex;
@@ -56,7 +57,7 @@ header {
   width: 330px;
   margin: auto;
   line-height: 1.5;
-  background-color: #c0c0c0; }
+  background-color: #eaeaea; }
   #score p.score {
     font-size: 1rem;
     background-color: #fff;
@@ -82,5 +83,27 @@ header {
   outline: 1px solid #000;
   background-color: #000; }
 
+.controls {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  margin: auto;
+  color: #eaeaea; }
+  .controls i {
+    background-color: #000;
+    border: 5px solid #0000ff;
+    color: yellow;
+    padding: 10px;
+    margin: 5px; }
+    .controls i:active {
+      background-color: #000;
+      border: 5px solid #0000ff;
+      color: #00ff00; }
+
+@media (max-width: 400px) {
+  header h1 {
+    font-size: 2rem; } }
 /* Media Queries
 -------------------------------------- */
