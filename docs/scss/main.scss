@@ -53,8 +53,11 @@ header {
   width: $square-length;
   display: block;
   float: left;
-  outline: 1px solid $black;
+  outline: 1px solid $dark-gray;
   background-color: $black;
+}
+.apple {
+  background-color: $red;
 }
 .controls {
   font-size: 1.5rem;

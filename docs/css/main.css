@@ -80,8 +80,11 @@ header {
   width: 10px;
   display: block;
   float: left;
-  outline: 1px solid #000;
+  outline: 1px solid #3a3939;
   background-color: #000; }
+
+.apple {
+  background-color: #ff0000; }
 
 .controls {
   font-size: 1.5rem;
