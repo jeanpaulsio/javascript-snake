@@ -20,7 +20,7 @@ void 0!==c?null===c?void r.removeAttr(a,b):e&&"set"in e&&void 0!==(d=e.set(a,c,b
 $(document).ready(function(){
 	
 	// Create Game Board
-	var boxCount = 900; // number of squares
+	var boxCount = 1200; // number of squares
 	for(var i = 1; i <= boxCount; i++){
 	    $(".container").append('<div class="box"></div>');
 	}
