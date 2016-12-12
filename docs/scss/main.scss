@@ -57,7 +57,7 @@ header {
 }
 .apple {
   background-color: $red;
-  box-shadow: 0 -4px 0 $green;
+  box-shadow: 0 -2px 0 $green;
 }
 .snake-body {
   background-color: $dark-yellow;
@@ -79,7 +79,7 @@ header {
     margin: 5px;
     &:active {
       background-color: $black;
-      color: $green;
+      color: $yellow;
     }
   }
 }

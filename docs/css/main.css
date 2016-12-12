@@ -84,7 +84,7 @@ header {
 
 .apple {
   background-color: #ff0000;
-  box-shadow: 0 -4px 0 #00ff00; }
+  box-shadow: 0 -2px 0 #00ff00; }
 
 .snake-body {
   background-color: #afaf00;
@@ -106,7 +106,7 @@ header {
     margin: 5px; }
     .controls i:active {
       background-color: #000;
-      color: #00ff00; }
+      color: #ffff00; }
 
 @media (max-width: 400px) {
   header {

@@ -26,7 +26,7 @@ $(document).ready(function(){
 	var randNum = (Math.random() * 1200) + 1;
 
 	// Snake Body
-	var snakeBody = [613, 614, 615, 616];
+	var snakeBody = [612, 613, 614, 615, 616, 617];
 	if(snakeBody.indexOf(parseInt(randNum)) != -1) {
 		randNum += 10
 	}
