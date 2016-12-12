@@ -7,10 +7,36 @@
 html, body {
   height: 100%;
   width: 100%;
-  background-color: $gray;
+  background-color: $light-gray;
   font-family: 'Share Tech Mono', monospace;
+  font-size: 16px;
 }
-
+header {
+  margin: auto;
+  text-align: center;
+  color: $green;
+  h1 {
+    font-size: 4rem;
+  }
+}
+#score {
+  display: flex;
+  justify-content: flex-end;
+  width: $container-length + 30;
+  margin: auto;
+  line-height: 1.5;
+  background-color: $gray;
+  p.score {
+    font-size: 1rem;
+    background-color: $white;
+    outline: 3px solid $black;
+    padding: 10px;
+  }
+  p.text {
+    font-size: 1rem;
+    padding: 10px;
+  }
+}
 .container {
   display: flex;
   flex-wrap: wrap;
