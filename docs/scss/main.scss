@@ -44,14 +44,6 @@ $container-length: $mobile-xs;
   .container { width: $container-length; }
   .box { height: $square-length; width: $square-length; }
 }
-@media (min-width: $tablet) { 
-  $container-length: 600px;
-  $square-length: $container-length / $squares-per-row;
-
-  .container { width: $container-length; }
-  .box { height: $square-length; width: $square-length; }
-}
-
 
 
 /* Media Queries
