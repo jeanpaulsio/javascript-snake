@@ -6,6 +6,13 @@ html, body {
    width: 100%;
 }
 
+$blue: #0000ff;
+$black: #000;
+$white: #fff;
+$red: #ff0000;
+$yellow: #ffff00;
+$green: #00ff00;
+
  $mobile-xs: 400px;
     $mobile: 481px;
     $tablet: 641px;
@@ -23,14 +30,15 @@ $container-length: 400px;
   align-items: flex-start;
   width: $container-length;
   margin: auto;
+  border: 15px solid $blue;
 }
 .box {
   height: $square-length;
   width: $square-length;
   display: block;
   float: left;
-  outline: 1px solid gray;
-  background-color: gray;
+  outline: 1px solid #666;
+  background-color: $black;
 }
 
 /* Media Queries

@@ -44,15 +44,16 @@ html, body {
   flex-wrap: wrap;
   align-items: flex-start;
   width: 400px;
-  margin: auto; }
+  margin: auto;
+  border: 15px solid #0000ff; }
 
 .box {
   height: 13.33333px;
   width: 13.33333px;
   display: block;
   float: left;
-  outline: 1px solid gray;
-  background-color: gray; }
+  outline: 1px solid #666;
+  background-color: #000; }
 
 /* Media Queries
 -------------------------------------- */
