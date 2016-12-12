@@ -46,18 +46,22 @@ header {
   align-items: flex-start;
   width: $container-length;
   margin: auto;
-  border: 15px solid $blue;
+  border: 15px inset $blue;
 }
 .box {
   height: $square-length;
   width: $square-length;
   display: block;
   float: left;
-  outline: 1px solid $dark-gray;
   background-color: $black;
 }
 .apple {
   background-color: $red;
+  box-shadow: 0 -4px 0 $green;
+}
+.snake-body {
+  background-color: $dark-yellow;
+  box-shadow: 0 -2px 0 $yellow;
 }
 .controls {
   font-size: 1.5rem;
@@ -69,7 +73,8 @@ header {
   color: $light-gray;
   i {
     background-color: $black;
-    color: yellow;
+    color: $dark-yellow;
+    text-shadow: 0 -2px 0 $yellow;
     padding: 10px;
     margin: 5px;
     &:active {

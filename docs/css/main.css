@@ -73,18 +73,22 @@ header {
   align-items: flex-start;
   width: 300px;
   margin: auto;
-  border: 15px solid #0000ff; }
+  border: 15px inset #0000ff; }
 
 .box {
   height: 10px;
   width: 10px;
   display: block;
   float: left;
-  outline: 1px solid #3a3939;
   background-color: #000; }
 
 .apple {
-  background-color: #ff0000; }
+  background-color: #ff0000;
+  box-shadow: 0 -4px 0 #00ff00; }
+
+.snake-body {
+  background-color: #afaf00;
+  box-shadow: 0 -2px 0 #ffff00; }
 
 .controls {
   font-size: 1.5rem;
@@ -96,7 +100,8 @@ header {
   color: #eaeaea; }
   .controls i {
     background-color: #000;
-    color: yellow;
+    color: #afaf00;
+    text-shadow: 0 -2px 0 #ffff00;
     padding: 10px;
     margin: 5px; }
     .controls i:active {
