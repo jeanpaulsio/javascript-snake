@@ -11,6 +11,7 @@
   "devDependencies": {
     "browser-sync": "^2.18.5",
     "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
     "gulp-ruby-sass": "^2.1.1"
   }
 }
