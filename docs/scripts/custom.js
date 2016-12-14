@@ -1,14 +1,11 @@
 function createGrid(){
   allCoords = [];
-
   for(var i=15; i >= -15; i--){
-    let rowMin = -15; let rowMax = 15;
-    let row    = [];
+    let rowMin = -15; let rowMax = 15; let row = [];
     while(rowMin <= rowMax){ row.push([rowMin++, i]); }
     
     allCoords.push(row);
   }
-  
   return allCoords
 }
 
@@ -20,6 +17,13 @@ function populateGrid(allCoords){
   }
 }
 
+function populateSnake(snakeCoords){
+  var length = snakeCoords.length;
+  for(var i = 0; i < snakeCoords.length; i++){
+    $("[name='" + snakeCoords[i] + "'").addClass("snake-body");
+  }
+}
+
 // Snake Constructor
 var Snake = function(bodyCoords){
   this.bodyCoords = bodyCoords;
@@ -27,27 +31,27 @@ var Snake = function(bodyCoords){
 }
 
 Snake.prototype.move = function(direction){
-  var headPiece = this.bodyPieces[this.bodyPieces.length - 1];
+  var headPiece = this.bodyCoords[this.bodyCoords.length - 1];
   
   switch(direction){
     case "u": 
-      this.bodyPieces.push([headPiece[0], headPiece[1]+1]);
+      this.bodyCoords.push([headPiece[0], headPiece[1]+1]);
       break;
     case "r":
-      this.bodyPieces.push([headPiece[0]+1, headPiece[1]]);
+      this.bodyCoords.push([headPiece[0]+1, headPiece[1]]);
       break;
     case "d":
-      this.bodyPieces.push([headPiece[0], headPiece[1]-1]);
+      this.bodyCoords.push([headPiece[0], headPiece[1]-1]);
       break;
     case "l":
-      this.bodyPieces.push([headPiece[0]-1, headPiece[1]]);
+      this.bodyCoords.push([headPiece[0]-1, headPiece[1]]);
       break;
     default:
-      return this.bodyPieces;
+      return this.bodyCoords;
   }
   
-  this.bodyPieces.shift();
-  return this.bodyPieces;
+  this.bodyCoords.shift();
+  return this.bodyCoords;
 };
 
 
@@ -65,14 +69,7 @@ GameBoard.prototype.showSnake = function(){
     $(".box").removeClass("snake-body");
   };
 
-  // Snake Constructor
-
-  
-
-  var BOARD = new GameBoard();
   BOARD.showSnake();
-  
-  var yellowSnake = new Snake(BOARD.snakeLocation);
   
     // Listen for Keyboard Input
   $(window).keydown(function(e){
@@ -99,8 +96,13 @@ GameBoard.prototype.showSnake = function(){
 */
 
 $(document).ready(function(){
-  var gridCoords = createGrid();
-  var gameBoard  = populateGrid(gridCoords);
+  var gridCoords  = createGrid();
+  var gameBoard   = populateGrid(gridCoords);
+  var yellowSnake = new Snake([[-1,0],[0,0],[1,0]]);
+
+  populateSnake(yellowSnake.bodyCoords);
+  yellowSnake.move("u");
+  populateSnake(yellowSnake.bodyCoords);
 });
 
 
