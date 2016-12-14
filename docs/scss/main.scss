@@ -9,14 +9,15 @@
 html, body {
   height: 100%;
   width: 100%;
-  background-color: $gray;
+  background-color: $dark-gray;
   font-family: 'Orbitron', sans-serif;
   font-size: 16px;
 }
 header {
   margin: auto;
+  padding-top: 10px;
   text-align: center;
-  color: $dark-gray;
+  color: $yellow;
   h1 {
     font-size: 3rem;
   }
@@ -24,10 +25,10 @@ header {
 #score {
   display: flex;
   justify-content: flex-end;
-  width: $container-length;
+  width: $container-length + 20;
   margin: auto;
   line-height: 1.5;
-  background-color: $light-gray;
+  background-color: $gray;
   p.score {
     font-size: 1rem;
     color: $green;
@@ -49,6 +50,7 @@ header {
   align-items: flex-start;
   width: $container-length;
   margin: auto;
+  border: 10px inset $blue;
   @include shadow(2);
 }
 .box {
@@ -57,7 +59,6 @@ header {
   display: block;
   float: left;
   background-color: $black;
-  outline: 1px solid $black;
 }
 .edge {
   background-color: $blue;
@@ -67,9 +68,8 @@ header {
   box-shadow: 0 -2px 0 $green;
 }
 .snake-body {
-  background-color: $dark-yellow;
-  box-shadow: 0 -2px 0 $yellow;
-  outline: 1px solid $dark-yellow;
+  background-color: $yellow;
+  
 }
 .controls {
   font-size: 1.5rem;
@@ -91,15 +91,7 @@ header {
       background-color: $black;
       color: $yellow;
       text-shadow: 0 -2px 0 $dark-yellow;
-      border: 2px solid $light-gray;
-  }
-}
-
-@media (max-width: $mobile-xs) { 
-
-  header {
-    margin-top: 10px;
-    h1 { display: none; }
+      border: 2px solid $dark-yellow;
   }
 }
 

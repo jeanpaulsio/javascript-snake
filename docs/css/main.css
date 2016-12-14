@@ -39,28 +39,29 @@ Google Material Design Box Shadows
 html, body {
   height: 100%;
   width: 100%;
-  background-color: #c0c0c0;
+  background-color: #363636;
   font-family: 'Orbitron', sans-serif;
   font-size: 16px; }
 
 header {
   margin: auto;
+  padding-top: 10px;
   text-align: center;
-  color: #3a3939; }
+  color: #ffff00; }
   header h1 {
     font-size: 3rem; }
 
 #score {
   display: flex;
   justify-content: flex-end;
-  width: 310px;
+  width: 392px;
   margin: auto;
   line-height: 1.5;
-  background-color: #eaeaea; }
+  background-color: #c0c0c0; }
   #score p.score {
     font-size: 1rem;
     color: #00ff00;
-    background-color: #3a3939;
+    background-color: #363636;
     border: 3px solid #000;
     padding: 10px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
@@ -68,23 +69,23 @@ header {
     font-size: 1rem;
     padding: 10px;
     border: 3px solid transparent;
-    color: #3a3939; }
+    color: #363636; }
 
 .container {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
-  width: 310px;
+  width: 372px;
   margin: auto;
+  border: 10px inset #0000ff;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
 
 .box {
-  height: 10px;
-  width: 10px;
+  height: 12px;
+  width: 12px;
   display: block;
   float: left;
-  background-color: #000;
-  outline: 1px solid #000; }
+  background-color: #000; }
 
 .edge {
   background-color: #0000ff; }
@@ -94,16 +95,14 @@ header {
   box-shadow: 0 -2px 0 #00ff00; }
 
 .snake-body {
-  background-color: #afaf00;
-  box-shadow: 0 -2px 0 #ffff00;
-  outline: 1px solid #afaf00; }
+  background-color: #ffff00; }
 
 .controls {
   font-size: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 310px;
+  width: 372px;
   margin: auto;
   color: #eaeaea; }
   .controls i {
@@ -117,12 +116,7 @@ header {
     background-color: #000;
     color: #ffff00;
     text-shadow: 0 -2px 0 #afaf00;
-    border: 2px solid #eaeaea; }
+    border: 2px solid #afaf00; }
 
-@media (max-width: 400px) {
-  header {
-    margin-top: 10px; }
-    header h1 {
-      display: none; } }
 /* Media Queries
 -------------------------------------- */
