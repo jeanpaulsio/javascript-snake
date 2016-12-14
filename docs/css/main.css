@@ -36,6 +36,9 @@ table {
 Google Material Design Box Shadows
 
 */
+* {
+  transition: background-color 0.4s; }
+
 html, body {
   height: 100%;
   width: 100%;

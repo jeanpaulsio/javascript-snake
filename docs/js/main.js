@@ -22,17 +22,19 @@ function populateGrid(allCoords){
   }
 }
 
-function populateSnake(snakeCoords){
+var Snake = function(bodyCoords){
+  this.bodyCoords = bodyCoords;
+  this.direction  = "r"
+}
+
+function renderSnake(snakeCoords){
   var length = snakeCoords.length;
   for(var i = 0; i < snakeCoords.length; i++){
     $("[name='" + snakeCoords[i] + "'").addClass("snake-body");
   }
 }
-
-// Snake Constructor
-var Snake = function(bodyCoords){
-  this.bodyCoords = bodyCoords;
-  this.direction = "r"
+function eraseSnake(){
+  $(".box").removeClass("snake-body");
 }
 
 Snake.prototype.move = function(direction){
@@ -59,57 +61,49 @@ Snake.prototype.move = function(direction){
   return this.bodyCoords;
 };
 
+function gameLoop(currentSnake){
 
-
-
-// TODO: ORGANIZE THIS MESS
-/*
-GameBoard.prototype.showSnake = function(){
-    var length = this.snakeLocation.length;
-    for(var i = 0; i < this.snakeLocation.length; i++){
-      $("[name='" + this.snakeLocation[i] + "'").addClass("snake-body");
+  setTimeout(function(){
+    if(currentSnake.bodyCoords[currentSnake.bodyCoords.length-1][1] != 15){
+      eraseSnake()
+      currentSnake.move("u");
+      gameLoop(currentSnake);
+      renderSnake(currentSnake.bodyCoords);
     }
-  };
-  GameBoard.prototype.hideSnake = function(){
-    $(".box").removeClass("snake-body");
-  };
+  }, 200);
+}
 
-  BOARD.showSnake();
-  
-    // Listen for Keyboard Input
-  $(window).keydown(function(e){
-    if(e.keyCode == 37){
-      $(".fa").removeClass("active");
-      $(".fa-arrow-left").toggleClass("active");
-    } else if(e.keyCode == 38){
-      $(".fa").removeClass("active");
-      $(".fa-arrow-up").toggleClass("active");
-    } else if(e.keyCode == 39){
-      $(".fa").removeClass("active");
-      $(".fa-arrow-right").toggleClass("active");
-      window.setTimeout(BOARD.hideSnake, 2000);
-      
-
-    } else if(e.keyCode == 40){
-      $(".fa").removeClass("active");
-      $(".fa-arrow-down").toggleClass("active");
-    }
-  });
-
-
-
-*/
 
 $(document).ready(function(){
-  var gridCoords  = createGrid();
-  var gameBoard   = populateGrid(gridCoords);
+  
+  
   var yellowSnake = new Snake([[-1,0],[0,0],[1,0]]);
 
-  populateSnake(yellowSnake.bodyCoords);
-  yellowSnake.move("u");
-  populateSnake(yellowSnake.bodyCoords);
+  var gridCoords  = createGrid();
+  populateGrid(gridCoords);
+  gameLoop(yellowSnake)
 });
 
 
 
 
+
+
+
+// listen for arrows
+
+$(window).keydown(function(e){
+  if(e.keyCode == 37){
+      $(".fa").removeClass("active");
+      $(".fa-arrow-left").toggleClass("active");
+  } else if(e.keyCode == 38){
+      $(".fa").removeClass("active");
+      $(".fa-arrow-up").toggleClass("active");
+  } else if(e.keyCode == 39){
+      $(".fa").removeClass("active");
+      $(".fa-arrow-right").toggleClass("active");
+  } else if(e.keyCode == 40){
+      $(".fa").removeClass("active");
+      $(".fa-arrow-down").toggleClass("active");
+  }
+});
