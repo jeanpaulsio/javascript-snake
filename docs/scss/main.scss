@@ -2,101 +2,19 @@
 @import 'mixins';
 @import 'colors';
 @import 'sizes';
-@import 'stroke';
 
 @import url('https://fonts.googleapis.com/css?family=Orbitron');
 
-* {
-  transition: background-color 0.4s }
+* { transition: background-color 0.4s }
 
 html, body {
   height: 100%;
   width: 100%;
-  background-color: $dark-gray;
+  background-color: white;
   font-family: 'Orbitron', sans-serif;
   font-size: 16px;
 }
-header {
-  margin: auto;
-  padding-top: 10px;
-  text-align: center;
-  color: $yellow;
-  h1 {
-    font-size: 3rem;
-  }
-}
-#score {
-  display: flex;
-  justify-content: flex-end;
-  width: $container-length + 20;
-  margin: auto;
-  line-height: 1.5;
-  background-color: $gray;
-  p.score {
-    font-size: 1rem;
-    color: $green;
-    background-color: $dark-gray;
-    border: 3px solid $black;
-    padding: 10px;
-    @include shadow(2);
-  }
-  p.text {
-    font-size: 1rem;
-    padding: 10px;
-    border: 3px solid transparent;
-    color: $dark-gray;
-  }
-}
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  width: $container-length;
-  margin: auto;
-  border: 10px inset $blue;
-  @include shadow(2);
-}
-.box {
-  height: $square-length;
-  width: $square-length;
-  display: block;
-  float: left;
-  background-color: $black;
-}
-.edge {
-  background-color: $blue;
-}
-.apple {
-  background-color: $red;
-  box-shadow: 0 -2px 0 $green;
-}
-.snake-body {
-  background-color: $yellow;
-  
-}
-.controls {
-  font-size: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: $container-length;
-  margin: auto;
-  color: $light-gray;
-  i {
-    background-color: $black;
-    color: $dark-yellow;
-    text-shadow: 0 -2px 0 $yellow;
-    padding: 10px;
-    margin: 5px;
-    border: 2px solid $black;
-  }
-  .active {
-      background-color: $black;
-      color: $yellow;
-      text-shadow: 0 -2px 0 $dark-yellow;
-      border: 2px solid $dark-yellow;
-  }
-}
+
 
 /* Media Queries
 -------------------------------------- */

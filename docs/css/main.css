@@ -42,84 +42,9 @@ Google Material Design Box Shadows
 html, body {
   height: 100%;
   width: 100%;
-  background-color: #363636;
+  background-color: white;
   font-family: 'Orbitron', sans-serif;
   font-size: 16px; }
-
-header {
-  margin: auto;
-  padding-top: 10px;
-  text-align: center;
-  color: #ffff00; }
-  header h1 {
-    font-size: 3rem; }
-
-#score {
-  display: flex;
-  justify-content: flex-end;
-  width: 392px;
-  margin: auto;
-  line-height: 1.5;
-  background-color: #c0c0c0; }
-  #score p.score {
-    font-size: 1rem;
-    color: #00ff00;
-    background-color: #363636;
-    border: 3px solid #000;
-    padding: 10px;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
-  #score p.text {
-    font-size: 1rem;
-    padding: 10px;
-    border: 3px solid transparent;
-    color: #363636; }
-
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  width: 372px;
-  margin: auto;
-  border: 10px inset #0000ff;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
-
-.box {
-  height: 12px;
-  width: 12px;
-  display: block;
-  float: left;
-  background-color: #000; }
-
-.edge {
-  background-color: #0000ff; }
-
-.apple {
-  background-color: #ff0000;
-  box-shadow: 0 -2px 0 #00ff00; }
-
-.snake-body {
-  background-color: #ffff00; }
-
-.controls {
-  font-size: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 372px;
-  margin: auto;
-  color: #eaeaea; }
-  .controls i {
-    background-color: #000;
-    color: #afaf00;
-    text-shadow: 0 -2px 0 #ffff00;
-    padding: 10px;
-    margin: 5px;
-    border: 2px solid #000; }
-  .controls .active {
-    background-color: #000;
-    color: #ffff00;
-    text-shadow: 0 -2px 0 #afaf00;
-    border: 2px solid #afaf00; }
 
 /* Media Queries
 -------------------------------------- */
