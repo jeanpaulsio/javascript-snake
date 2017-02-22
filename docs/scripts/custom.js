@@ -1,16 +1,3 @@
-let board = [
-"", "", "", "", "", "", "", "", "", "",
-"", "", "", "", "", "", "", "", "", "",
-"", "", "", "", "", "", "", "", "", "",
-"", "", "", "", "", "", "", "", "", "",
-"", "", "", "", "", "", "", "", "", "",
-"", "", "", "", "", "", "", "", "", "",
-"", "", "", "", "", "", "", "", "", "",
-"", "", "", "", "", "", "", "", "", "",
-"", "", "", "", "", "", "", "", "", "",
-"", "", "", "", "", "", "", "", "", ""
-]
-
 let snake = [26, 25, 24];
 
 function getTarget(snake, direction) {
@@ -40,23 +27,47 @@ move(snake, "left")
 move(snake, "up")
 move(snake, "right")
 
-function drawBoard(board) {
-  for (let i = 0; i < board.length; i++) {
-    board[i] = ((i + 1) % 10 == 0) ? " -\n" : ` ${board[i]}`
-  }
-  console.log(board.join(''));
-}
-
 let i = 1
 let stop = false
 
-function sayHi(){
+function drawBoard() {
+  let board = [
+  "-", "-", "-", "-", "-", "-", "-", "-", "-", "-",
+  "-", "-", "-", "-", "-", "-", "-", "-", "-", "-",
+  "-", "-", "-", "-", "-", "-", "-", "-", "-", "-",
+  "-", "-", "-", "-", "-", "-", "-", "-", "-", "-",
+  "-", "-", "-", "-", "-", "-", "-", "-", "-", "-",
+  "-", "-", "-", "-", "-", "-", "-", "-", "-", "-",
+  "-", "-", "-", "-", "-", "-", "-", "-", "-", "-",
+  "-", "-", "-", "-", "-", "-", "-", "-", "-", "-",
+  "-", "-", "-", "-", "-", "-", "-", "-", "-", "-",
+  "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"
+  ]
+
+  for (let i = 0; i < board.length; i++) {
+    board[i] = ((i + 1) % 10 == 0) ? "<br>" : `${board[i]}`
+  }
+  num = Math.floor((Math.random() * 99) + 1);
+  board[num] = "x";
+  document.getElementById('board').innerHTML = board.join('');
+}
+
+function animateBoard(){
+  setTimeout(function(){
+    drawBoard();
+    i += 1;
+    if (i == 30) { stop = true }
+    if (!stop) { animateBoard() }
+  }, 500)
+}
+
+function countToTen(){
   setTimeout(function() {
     document.getElementById('stuff').innerHTML = i;
     i += 1;
     if (i == 11) { stop = true }
-    if (!stop) { sayHi() }
-  }, 200);
+    if (!stop) { countToTen() }
+  }, 333);
 }
 
 
