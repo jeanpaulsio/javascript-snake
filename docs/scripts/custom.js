@@ -47,13 +47,16 @@ function drawBoard(board) {
   console.log(board.join(''));
 }
 
+let i = 1
+let stop = false
 
 function sayHi(){
-  setTimeout(function(){
-    let rand = Math.floor((Math.random() * 10) + 1);
-    document.getElementById('stuff').innerHTML = rand
-    sayHi()
-  }, 333);
+  setTimeout(function() {
+    document.getElementById('stuff').innerHTML = i;
+    i += 1;
+    if (i == 11) { stop = true }
+    if (!stop) { sayHi() }
+  }, 200);
 }
 
 
