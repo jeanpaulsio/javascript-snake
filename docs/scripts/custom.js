@@ -43,6 +43,7 @@ function moveSnake(snake, position=currentDirection) {
 
   snake[snake.length - 1] = target;
 
+  console.log("snake + direction")
   console.log(snake)
   console.log(position)
 }
@@ -81,9 +82,11 @@ function eatsSelf() {
 
 function crashesIntoWall(board) {
   let wallCoords = getWallCoords(board);
-  if (wallCoords.includes(snake[snake.length - 1])) {
+  if (wallCoords.includes(snake[snake.length - 1] + 1)) {
     toggleGameStatus();
   }
+  console.log("wallCoords:")
+  console.log(wallCoords)
 }
 
 function getFruitCoord() {
@@ -104,11 +107,6 @@ function endGame(){
 
 function toggleGameStatus() {
   endGameStatus = endGameStatus ? false : true;
-}
-
-function startGame(){
-  endGameStatus = false;
-  animateBoard();
 }
 
 function drawSnake(board){
@@ -153,6 +151,7 @@ function playGame() {
   "O", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "O",
   "O", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "O"
   ]
+
   placeFruit(board);
   renderBoard(board)
   crashesIntoWall(board);
@@ -168,4 +167,9 @@ function animateBoard(){
     playGame();
     if (!endGame()) { animateBoard() }
   }, gameSpeed)
+}
+
+function startGame(){
+  endGameStatus = false;
+  animateBoard();
 }
