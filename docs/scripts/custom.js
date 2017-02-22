@@ -1,15 +1,26 @@
-function foo(){
-  setTimeout(function(){console.log("blah")}, 500);
-}
+let board = [
+"", "", "", "", "", "", "", "", "", "",
+"", "", "", "", "", "", "", "", "", "",
+"", "", "", "", "", "", "", "", "", "",
+"", "", "", "", "", "", "", "", "", "",
+"", "", "", "", "", "", "", "", "", "",
+"", "", "", "", "", "", "", "", "", "",
+"", "", "", "", "", "", "", "", "", "",
+"", "", "", "", "", "", "", "", "", "",
+"", "", "", "", "", "", "", "", "", "",
+"", "", "", "", "", "", "", "", "", ""
+]
 
-
-let snake = [42, 43, 44, 45];
+let snake = [26, 25, 24];
 
 function getTarget(snake, direction) {
-  if (direction == "right") {
-    return snake[snake.length - 1] + 1
-  } else if (direction == "up") {
-    return snake[snake.length - 1] - 10;
+  let snakeHead = snake[snake.length - 1]
+
+  switch(direction) {
+    case "right": return snakeHead + 1;
+    case "left":  return snakeHead - 1;
+    case "up":    return snakeHead - 10;
+    case "down":  return snakeHead + 10;
   }
 }
 
@@ -25,9 +36,24 @@ function move(snake, position) {
 }
 
 
-move(snake, "right");
-move(snake, "up");
-move(snake, "up");
-move(snake, "right");
+move(snake, "left")
+move(snake, "up")
+move(snake, "right")
+
+function drawBoard(board) {
+  for (let i = 0; i < board.length; i++) {
+    board[i] = ((i + 1) % 10 == 0) ? " -\n" : ` ${board[i]}`
+  }
+  console.log(board.join(''));
+}
+
+
+function sayHi(){
+  setTimeout(function(){
+    let rand = Math.floor((Math.random() * 10) + 1);
+    document.getElementById('stuff').innerHTML = rand
+    sayHi()
+  }, 333);
+}
 
 

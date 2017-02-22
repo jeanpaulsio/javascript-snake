@@ -1,7 +1,7 @@
-@import 'reset';
-@import 'mixins';
-@import 'colors';
-@import 'sizes';
+// @import 'reset';
+// @import 'mixins';
+// @import 'colors';
+// @import 'sizes';
 
 @import url('https://fonts.googleapis.com/css?family=Orbitron');
 
@@ -18,9 +18,9 @@ html, body {
 
 /* Media Queries
 -------------------------------------- */
-@media (min-width: $mobile-xs) { }
-@media (min-width: $mobile) { }
-@media (min-width: $tablet) { }
-@media (min-width: $desktop-sm) { }
-@media (min-width: $desktop-lg) { }
-@media (min-width: $desktop-xl) { }
+// @media (min-width: $mobile-xs) { }
+// @media (min-width: $mobile) { }
+// @media (min-width: $tablet) { }
+// @media (min-width: $desktop-sm) { }
+// @media (min-width: $desktop-lg) { }
+// @media (min-width: $desktop-xl) { }
