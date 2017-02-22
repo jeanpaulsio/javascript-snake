@@ -1,6 +1,10 @@
-let snake            = [25,26,27];
+// TODO snake can't move backward
+// TODO snake dies if it runs into itself
+// TODO append snake body better
+
+let snake            = [23, 24];
 let currentDirection = "right";
-let gameSpeed        = 300;
+let gameSpeed        = 250;
 let endGameStatus    = false
 let fruitCoord       = 29;
 
@@ -101,6 +105,10 @@ function drawBoard() {
   "O", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "O",
   "O", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "O"
   ]
+  while(board[fruitCoord].includes("O")) {
+    placeFruit();
+  }
+
   board[fruitCoord] = "|_@_|"
 
   for (let i = 0; i < board.length; i++) {
