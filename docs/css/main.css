@@ -7,7 +7,9 @@ html, body {
   width: 100%;
   background-color: white;
   font-family: 'Orbitron', sans-serif;
-  font-size: 16px; }
+  font-size: 16px;
+  overflow-x: hidden;
+  overflow-y: hidden; }
 
 /* Media Queries
 -------------------------------------- */
