@@ -1,9 +1,9 @@
 
-let snake            = [23, 24];
+let snake            = [23, 24, 25, 26];
 let currentDirection = "right";
-let gameSpeed        = 150;
+let gameSpeed        = 200;
 let endGameStatus    = false
-let fruitCoord       = 29;
+let fruitCoord       = 30;
 
 function getTarget(snake, direction) {
   let snakeHead = snake[snake.length - 1]
@@ -47,7 +47,7 @@ function moveSnake(snake, position=currentDirection) {
   console.log(position)
 }
 
-function feedSnake(snake) {
+function appendSnakeTail(snake) {
   switch(snake[0] - snake[1]) {
     case -1:
       snake.unshift(snake[0] - 1);
@@ -62,12 +62,40 @@ function feedSnake(snake) {
       snake.unshift(snake[0] + 11);
       break;
   }
-  placeFruit();
+  getFruitCoord();
 }
 
-function placeFruit() {
+function feedSnake() {
+  if (snake[0] == fruitCoord) {
+    appendSnakeTail(snake);
+  }
+}
+
+function eatsSelf() {
+  let snakeBody        = snake.slice(0, snake.length-1);
+  let snakeHead        = snake[snake.length-1];
+  if (snakeBody.includes(snakeHead)) {
+    toggleGameStatus();
+  }
+}
+
+function crashesIntoWall(board) {
+  let wallCoords = getWallCoords(board);
+  if (wallCoords.includes(snake[snake.length - 1])) {
+    toggleGameStatus();
+  }
+}
+
+function getFruitCoord() {
   let randNumber = Math.floor((Math.random() * 130) + 1);
   fruitCoord = randNumber
+}
+
+function placeFruit(board) {
+  let wallCoords = getWallCoords(board);
+  while(board[fruitCoord].includes("O")) {
+    getFruitCoord();
+  }
 }
 
 function endGame(){
@@ -78,7 +106,7 @@ function toggleGameStatus() {
   endGameStatus = endGameStatus ? false : true;
 }
 
-function resumeGame(){
+function startGame(){
   endGameStatus = false;
   animateBoard();
 }
@@ -102,7 +130,14 @@ function getWallCoords(board) {
   return boardCoords;
 }
 
-function drawBoard() {
+function renderBoard(board) {
+  for (let i = 0; i < board.length; i++) {
+    board[i] = ((i + 1) % 11 == 0) ? `${board[i] += '<br>'}` : `${board[i]}`;
+    board[fruitCoord] = "|_@_|";
+  }
+}
+
+function playGame() {
   let board = [
   "O", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "O",
   "O", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "O",
@@ -118,32 +153,11 @@ function drawBoard() {
   "O", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "O",
   "O", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "O"
   ]
-  let wallCoords = getWallCoords(board);
-
-  while(board[fruitCoord].includes("O")) {
-    placeFruit();
-  }
-
-  board[fruitCoord] = "|_@_|"
-
-  for (let i = 0; i < board.length; i++) {
-    board[i] = ((i + 1) % 11 == 0) ? `${board[i] += '<br>'}` : `${board[i]}`
-  }
-
-  if (wallCoords.includes(snake[snake.length - 1])) {
-    toggleGameStatus();
-  }
-
-  if (snake[0] == fruitCoord) {
-    feedSnake(snake)
-  }
-
-  let snakeBody = snake.slice(0, snake.length-1)
-  let snakeHead = snake[snake.length-1]
-  if (snakeBody.includes(snakeHead)) {
-    toggleGameStatus();
-  }
-
+  placeFruit(board);
+  renderBoard(board)
+  crashesIntoWall(board);
+  feedSnake();
+  eatsSelf();
   drawSnake(board);
   moveSnake(snake)
   document.getElementById('board').innerHTML = board.join('');
@@ -151,7 +165,7 @@ function drawBoard() {
 
 function animateBoard(){
   setTimeout( () => {
-    drawBoard();
+    playGame();
     if (!endGame()) { animateBoard() }
   }, gameSpeed)
 }
