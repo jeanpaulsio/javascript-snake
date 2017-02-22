@@ -1,14 +1,13 @@
+let snake = [0, 1, 2];
+
 window.addEventListener('keydown', function (e){
   switch(e.keyCode) {
-    case 37: return console.log("left");
-    case 38: return console.log("up");
-    case 39: return console.log("right");
-    case 40: return console.log("down");
-    case 32: return animateBoard();
+    case 37: return move(snake, "left");
+    case 38: return move(snake, "up");
+    case 39: return move(snake, "right");
+    case 40: return move(snake, "down");
   }
 });
-
-let snake = [26, 25, 24];
 
 function getTarget(snake, direction) {
   let snakeHead = snake[snake.length - 1]
@@ -32,14 +31,17 @@ function move(snake, position) {
   console.log(snake);
 }
 
+function endGame(){
+  false;
+}
 
-move(snake, "left")
-move(snake, "up")
-move(snake, "right")
-
-let i = 1
-let stop = false
-
+function drawSnake(board){
+  for(let i = 0; i < board.length; i++) {
+    if (snake.includes(i)) {
+      board[i] = "|_X_|";
+    }
+  }
+}
 
 function drawBoard() {
   let board = [
@@ -58,8 +60,9 @@ function drawBoard() {
   for (let i = 0; i < board.length; i++) {
     board[i] = ((i + 1) % 10 == 0) ? "|___|<br>" : `${board[i]}`
   }
-  let num = Math.floor((Math.random() * 99) + 1);
-  board[num] = ((num + 1) % 10 == 0) ? "|_@_|<br>" : "|_@_|"
+  // let num = Math.floor((Math.random() * 99) + 1);
+  // board[num] = ((num + 1) % 10 == 0) ? "|_@_|<br>" : "|_@_|";
+  drawSnake(board);
 
   document.getElementById('board').innerHTML = board.join('');
 }
@@ -67,11 +70,6 @@ function drawBoard() {
 function animateBoard(){
   setTimeout(function(){
     drawBoard();
-    i += 1;
-    if (i == 10) { stop = true }
-    if (!stop) { animateBoard() }
-  }, 500)
+    if (!endGame()) { animateBoard() }
+  }, 0)
 }
-
-
-
