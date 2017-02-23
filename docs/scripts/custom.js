@@ -1,11 +1,14 @@
+// TODO: REFACTOR INTO CLASSES
 
 let snake            = [23, 24, 25, 26];
 let currentDirection = "right";
+let snakeDrawing     = "|_@_|"
+
 let gameSpeed        = 110;
 let endGameStatus    = false
+
 let fruitCoord       = 30;
 let fruitDrawing     = "|_$_|";
-let snakeDrawing     = "|_@_|"
 
 function getTarget(snake, direction) {
   let snakeHead = snake[snake.length - 1]
@@ -45,9 +48,9 @@ function moveSnake(snake, position=currentDirection) {
 
   snake[snake.length - 1] = target;
 
-  console.log("snake + direction")
-  console.log(snake)
-  console.log(position)
+  // console.log("snake + direction")
+  // console.log(snake)
+  // console.log(position)
 }
 
 function appendSnakeTail(snake) {
@@ -89,8 +92,8 @@ function crashesIntoWall(board) {
       wallCoords.includes(snake[snake.length - 1] + 1)) {
     toggleGameStatus();
   }
-  console.log("wallCoords:")
-  console.log(wallCoords)
+  // console.log("wallCoords:")
+  // console.log(wallCoords)
 }
 
 function getFruitCoord() {
@@ -176,3 +179,73 @@ function startGame(){
   endGameStatus = false;
   animateBoard();
 }
+
+
+// BEGIN REFACTORING
+
+class GameBoard {
+  constructor() {
+    this.length     = 22;
+    this.area       = this.length * this.length;
+    this.topWall    = [...Array(this.length).keys()];
+    this.bottomWall = [];
+    this.sideWalls  = [];
+    this.walls      = [];
+    this.board      = [];
+    this.boardPiece = "|___|";
+  }
+
+  getBottomWall() {
+    for (let i = this.length*(this.length-1); i < this.area ;i++) {
+      this.bottomWall.push(i);
+    }
+  }
+
+  getSideWalls() {
+    for (let i = this.length; i <= (this.length * (this.length-1));i+=22) {
+      this.sideWalls.push(i-1);
+      this.sideWalls.push(i);
+    }
+  }
+
+  concatWalls() {
+    this.getBottomWall();
+    this.getSideWalls();
+    this.walls = this.topWall.concat(this.sideWalls.concat(this.bottomWall));
+  }
+
+  generateBoard() {
+    for (let i = 0; i < this.area; i++) {
+      this.board.push(this.boardPiece);
+    }
+  }
+
+  drawBoard() {
+    this.concatWalls();
+    this.generateBoard();
+  }
+}
+
+class Snake {
+  constructor() {
+    this.body = [23, 24, 25, 26];
+    this.currentDirection = "right";
+    this.ascii = "|_@_|"
+  }
+}
+
+class Fruit {
+  constructor() {
+    this.coord = 30;
+    this.ascii = "|_$_|";
+  }
+}
+
+class GamePlay {
+  constructor() {
+    this.speed = 110;
+    this.endGameStatus = false;
+  }
+}
+
+// END REFACTORING
