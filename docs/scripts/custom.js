@@ -1,7 +1,7 @@
 
 let snake            = [23, 24, 25, 26];
 let currentDirection = "right";
-let gameSpeed        = 200;
+let gameSpeed        = 110;
 let endGameStatus    = false
 let fruitCoord       = 30;
 let fruitDrawing     = "|_$_|";
