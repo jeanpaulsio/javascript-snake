@@ -78,16 +78,18 @@ function feedSnake() {
 }
 
 function eatsSelf() {
-  let snakeBody        = snake.slice(0, snake.length-1);
-  let snakeHead        = snake[snake.length-1];
+  let snakeBody = snake.slice(0, snake.length-1);
+  let snakeHead = snake[snake.length-1];
   if (snakeBody.includes(snakeHead)) {
     toggleGameStatus();
   }
 }
 
+// TODO refactor this mess
 function crashesIntoWall(board) {
   let wallCoords = getWallCoords(board);
-  if (wallCoords.includes(snake[snake.length - 1] + 1)) {
+  if (wallCoords.includes(snake[snake.length - 1]) ||
+      wallCoords.includes(snake[snake.length - 1] + 1)) {
     toggleGameStatus();
   }
   console.log("wallCoords:")
@@ -117,7 +119,6 @@ function toggleGameStatus() {
 function drawSnake(board){
   for(let i = 0; i < board.length; i++) {
     if (snake.includes(i)) {
-
       board[i] = ((i + 1) % 11 == 0) ? "|_X_|<br>" : "|_X_|";
     }
   }
