@@ -13,6 +13,7 @@ let snakeDirection   = "right";
 
 let gameSpeed        = 110;
 let endGameStatus    = false;
+let currentScore     = 0;
 
 let fruitAscii       = "|_$_|";
 let snakeAscii       = "|_@_|";
@@ -84,6 +85,9 @@ function appendSnakeTail(snake) {
 function feedSnake() {
   if (snake[0] == fruitCoord) {
     appendSnakeTail(snake);
+  }
+  if (snake[snake.length-1] == fruitCoord) {
+    currentScore++
   }
 }
 
@@ -184,6 +188,7 @@ function playGame() {
   drawSnakeInHTML(board);
   moveSnake(snake)
   document.getElementById('board').innerHTML = board.join('');
+  document.getElementById('score').innerHTML = currentScore;
 }
 
 function animateBoard(){

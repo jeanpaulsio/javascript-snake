@@ -3,6 +3,5 @@
 
 ## TODO
 
-* Refactor into Classes
-* Add score counter
+* Refactor, refactor, refactor
 * Fix Bug on mobile that kills snake when it moves backwards
