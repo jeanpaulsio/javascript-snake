@@ -17,7 +17,13 @@
     <div id="board"></div>
   </div>
   <div class="container d-flex justify-content-center mt-3">
-    <button onclick="location.reload()" class="btn btn-success">Restart</button>
+    <button class="btn btn-lg btn-success m-2" onclick="setSnakeDirection('left')">left</button>
+    <button class="btn btn-lg btn-success m-2" onclick="setSnakeDirection('up')">up</button>
+    <button class="btn btn-lg btn-success m-2" onclick="setSnakeDirection('down')">down</button>
+    <button class="btn btn-lg btn-success m-2" onclick="setSnakeDirection('right')">right</button>
+  </div>
+  <div class="container w-25 d-flex justify-content-center mt-3">
+    <button onclick="location.reload()" class="btn btn-danger">Restart</button>
   </div>
 </body>
 </html>

@@ -5,4 +5,4 @@
 
 * Refactor into Classes
 * Add score counter
-* Make Mobile Friendly
+* Fix Bug on mobile that kills snake when it moves backwards
