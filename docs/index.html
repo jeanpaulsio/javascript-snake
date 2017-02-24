@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
   <link rel="stylesheet" href="css/main.css">
   <script type="text/javascript" src="js/main.js"></script>
   <link rel="shortcut icon" type="image/png" href="images/favicon.png">
@@ -11,7 +13,11 @@
 </head>
 
 <body onload="startGame()">
-  <div id="board"></div>
-  <button onclick="location.reload()">Restart</button>
+  <div class="d-flex justify-content-center">
+    <div id="board"></div>
+  </div>
+  <div class="container d-flex justify-content-center mt-3">
+    <button onclick="location.reload()" class="btn btn-success">Restart</button>
+  </div>
 </body>
 </html>

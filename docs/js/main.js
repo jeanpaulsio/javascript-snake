@@ -19,10 +19,10 @@ let snakeAscii       = "|_@_|";
 let wallAscii        = "|_O_|";
 let blankAscii       = "|___|";
 
-let fruitHTML        = "<span class'box'>|_$_|</span>";
-let snakeHTML        = "<span class'box'>|_@_|</span>";
-let wallHTML         = "<span class'box'>|_O_|</span>";
-let blankHTML        = "<span class'box'>|___|</span>";
+let fruitHTML        = "<span class='box red'>&nbsp;</span>";
+let snakeHTML        = "<span class='box yellow'>&nbsp;</span>";
+let wallHTML         = "<span class='box blue'>&nbsp;</span>";
+let blankHTML        = "<span class='box'>&nbsp;</span>";
 
 function getTarget(snake, direction) {
   let snakeHead = snake[snake.length - 1]
