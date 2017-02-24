@@ -1,5 +1,5 @@
 # JavaScript Snake
-[live](jeanpauls.io/javascript-snake/)
+[live](http://jeanpauls.io/javascript-snake/)
 
 ## TODO
 
