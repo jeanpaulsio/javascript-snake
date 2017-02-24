@@ -1,14 +1,23 @@
-// TODO: REFACTOR INTO CLASSES
+let boardLength      = 22;
+let area             = boardLength * boardLength;
 
-let snake            = [23, 24, 25, 26];
-let currentDirection = "right";
-let snakeDrawing     = "|_@_|"
+let snake            = [180, 181, 182];
+let fruitCoord       = 190;
+
+let snakeDirection   = "right";
 
 let gameSpeed        = 110;
-let endGameStatus    = false
+let endGameStatus    = false;
 
-let fruitCoord       = 30;
-let fruitDrawing     = "|_$_|";
+let fruitAscii       = "|_$_|";
+let snakeAscii       = "|_@_|";
+let wallAscii        = "|_O_|";
+let blankAscii       = "|___|";
+
+let fruitHTML        = "<span class'box'>|_$_|</span>";
+let snakeHTML        = "<span class'box'>|_@_|</span>";
+let wallHTML         = "<span class'box'>|_O_|</span>";
+let blankHTML        = "<span class'box'>|___|</span>";
 
 function getTarget(snake, direction) {
   let snakeHead = snake[snake.length - 1]
@@ -16,41 +25,37 @@ function getTarget(snake, direction) {
   switch(direction) {
     case "right": return snakeHead + 1;
     case "left":  return snakeHead - 1;
-    case "up":    return snakeHead - 11;
-    case "down":  return snakeHead + 11;
+    case "up":    return snakeHead - boardLength;
+    case "down":  return snakeHead + boardLength;
   }
 }
 
-function setPosition(position) {
-  currentDirection = position
+function setSnakeDirection(direction) {
+  snakeDirection = direction
 }
 
-function moveSnake(snake, position=currentDirection) {
+function moveSnake(snake, direction=snakeDirection  ) {
   window.addEventListener('keydown', function (e){
-    if ((e.keyCode == 37) && !(position == "right")) {
-      return setPosition("left");
-    } else if ((e.keyCode == 38) && !(position == "down")) {
-      return setPosition("up");
-    } else if ((e.keyCode == 39) && !(position == "left")) {
-      return setPosition("right");
-    } else if ((e.keyCode == 40) && !(position == "up")) {
-      return setPosition("down");
+    if ((e.keyCode == 37) && !(direction == "right")) {
+      return setSnakeDirection("left");
+    } else if ((e.keyCode == 38) && !(direction == "down")) {
+      return setSnakeDirection("up");
+    } else if ((e.keyCode == 39) && !(direction == "left")) {
+      return setSnakeDirection("right");
+    } else if ((e.keyCode == 40) && !(direction == "up")) {
+      return setSnakeDirection("down");
     } else {
-      return setPosition(position);
+      return setSnakeDirection(direction);
     }
   });
 
-  let target = getTarget(snake, position);
+  let target = getTarget(snake, direction);
 
   for (let i = 0; i < snake.length; i++) {
     snake[i] = snake[i+1];
   }
 
   snake[snake.length - 1] = target;
-
-  // console.log("snake + direction")
-  // console.log(snake)
-  // console.log(position)
 }
 
 function appendSnakeTail(snake) {
@@ -61,11 +66,11 @@ function appendSnakeTail(snake) {
     case 1:
       snake.unshift(snake[0] + 1);
       break;
-    case -11:
-      snake.unshift(snake[0] -11);
+    case -boardLength :
+      snake.unshift(snake[0] -boardLength);
       break;
-    case 11:
-      snake.unshift(snake[0] + 11);
+    case boardLength :
+      snake.unshift(snake[0] + boardLength);
       break;
   }
   getFruitCoord();
@@ -77,7 +82,7 @@ function feedSnake() {
   }
 }
 
-function eatsSelf() {
+function snakeEatsSelf() {
   let snakeBody = snake.slice(0, snake.length-1);
   let snakeHead = snake[snake.length-1];
   if (snakeBody.includes(snakeHead)) {
@@ -85,15 +90,22 @@ function eatsSelf() {
   }
 }
 
-// TODO refactor this mess
-function crashesIntoWall(board) {
+function snakeHitsWall(board) {
   let wallCoords = getWallCoords(board);
   if (wallCoords.includes(snake[snake.length - 1]) ||
       wallCoords.includes(snake[snake.length - 1] + 1)) {
     toggleGameStatus();
   }
-  // console.log("wallCoords:")
-  // console.log(wallCoords)
+}
+
+function getWallCoords(board) {
+  let coords = [];
+  for (let i = 0; i <= board.length; i++) {
+    if (board[i] == wallHTML) {
+      coords.push(i);
+    }
+  }
+  return coords;
 }
 
 function getFruitCoord() {
@@ -103,67 +115,68 @@ function getFruitCoord() {
 
 function placeFruit(board) {
   let wallCoords = getWallCoords(board);
-  while(board[fruitCoord].includes("|_O_|")) {
+  while(board[fruitCoord].includes(wallAscii)) {
     getFruitCoord();
   }
 }
 
-function endGame(){
-  return endGameStatus;
+function drawSnakeInHTML(board){
+  for(let i = 0; i < board.length; i++) {
+    if (snake.includes(i)) {
+      board[i] = ((i + 1) % boardLength == 0) ? snakeHTML + "<br>" : snakeHTML ;
+    }
+  }
+}
+
+function renderBoardInHTML(board) {
+  for (let i = 0; i < board.length; i++) {
+    if ((i + 1) % boardLength == 0) {
+      board[i] = wallHTML + "<br>"
+    } else if  (board[i].includes(wallAscii)) {
+      board[i] = wallHTML
+    } else {
+      board[i] = blankHTML
+    }
+    board[fruitCoord] = fruitHTML
+  }
 }
 
 function toggleGameStatus() {
   endGameStatus = endGameStatus ? false : true;
 }
 
-function drawSnake(board){
-  for(let i = 0; i < board.length; i++) {
-    if (snake.includes(i)) {
-      board[i] = ((i + 1) % 11 == 0) ? snakeDrawing + "<br>" : snakeDrawing;
-    }
-  }
-}
-
-function getWallCoords(board) {
-  let boardCoords = [];
-  for (let i = 0; i <= board.length; i++) {
-    if (board[i] == "|_O_|") {
-      boardCoords.push(i);
-    }
-  }
-  return boardCoords;
-}
-
-function renderBoard(board) {
-  for (let i = 0; i < board.length; i++) {
-    board[i] = ((i + 1) % 11 == 0) ? `${board[i] += '<br>'}` : `${board[i]}`;
-    board[fruitCoord] = fruitDrawing;
-  }
-}
-
 function playGame() {
   let board = [
-  "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|",
-  "|_O_|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|_O_|",
-  "|_O_|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|_O_|",
-  "|_O_|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|_O_|",
-  "|_O_|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|_O_|",
-  "|_O_|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|_O_|",
-  "|_O_|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|_O_|",
-  "|_O_|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|_O_|",
-  "|_O_|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|_O_|",
-  "|_O_|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|_O_|",
-  "|_O_|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|_O_|",
-  "|_O_|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|_O_|",
-  "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|"
+  "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|",
+  "|_O_|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|_O_|",
+  "|_O_|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|_O_|",
+  "|_O_|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|_O_|",
+  "|_O_|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|_O_|",
+  "|_O_|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|_O_|",
+  "|_O_|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|_O_|",
+  "|_O_|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|_O_|",
+  "|_O_|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|_O_|",
+  "|_O_|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|_O_|",
+  "|_O_|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|_O_|",
+  "|_O_|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|_O_|",
+  "|_O_|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|_O_|",
+  "|_O_|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|_O_|",
+  "|_O_|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|_O_|",
+  "|_O_|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|_O_|",
+  "|_O_|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|_O_|",
+  "|_O_|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|_O_|",
+  "|_O_|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|_O_|",
+  "|_O_|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|_O_|",
+  "|_O_|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|___|", "|_O_|",
+  "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|", "|_O_|"
   ]
 
   placeFruit(board);
-  renderBoard(board)
-  crashesIntoWall(board);
+  renderBoardInHTML(board);
+  snakeHitsWall(board);
   feedSnake();
-  eatsSelf();
-  drawSnake(board);
+  snakeEatsSelf();
+  drawSnakeInHTML(board);
   moveSnake(snake)
   document.getElementById('board').innerHTML = board.join('');
 }
@@ -171,7 +184,7 @@ function playGame() {
 function animateBoard(){
   setTimeout( () => {
     playGame();
-    if (!endGame()) { animateBoard() }
+    if (!endGameStatus) { animateBoard(); }
   }, gameSpeed)
 }
 
@@ -179,73 +192,3 @@ function startGame(){
   endGameStatus = false;
   animateBoard();
 }
-
-
-// BEGIN REFACTORING
-
-class GameBoard {
-  constructor() {
-    this.length     = 22;
-    this.area       = this.length * this.length;
-    this.topWall    = [...Array(this.length).keys()];
-    this.bottomWall = [];
-    this.sideWalls  = [];
-    this.walls      = [];
-    this.board      = [];
-    this.boardPiece = "|___|";
-  }
-
-  getBottomWall() {
-    for (let i = this.length*(this.length-1); i < this.area ;i++) {
-      this.bottomWall.push(i);
-    }
-  }
-
-  getSideWalls() {
-    for (let i = this.length; i <= (this.length * (this.length-1));i+=22) {
-      this.sideWalls.push(i-1);
-      this.sideWalls.push(i);
-    }
-  }
-
-  concatWalls() {
-    this.getBottomWall();
-    this.getSideWalls();
-    this.walls = this.topWall.concat(this.sideWalls.concat(this.bottomWall));
-  }
-
-  generateBoard() {
-    for (let i = 0; i < this.area; i++) {
-      this.board.push(this.boardPiece);
-    }
-  }
-
-  drawBoard() {
-    this.concatWalls();
-    this.generateBoard();
-  }
-}
-
-class Snake {
-  constructor() {
-    this.body = [23, 24, 25, 26];
-    this.currentDirection = "right";
-    this.ascii = "|_@_|"
-  }
-}
-
-class Fruit {
-  constructor() {
-    this.coord = 30;
-    this.ascii = "|_$_|";
-  }
-}
-
-class GamePlay {
-  constructor() {
-    this.speed = 110;
-    this.endGameStatus = false;
-  }
-}
-
-// END REFACTORING

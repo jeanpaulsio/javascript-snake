@@ -11,5 +11,10 @@ html, body {
   overflow-x: hidden;
   overflow-y: hidden; }
 
+.box {
+  height: 20px;
+  width: 20px;
+  background-color: gray; }
+
 /* Media Queries
 -------------------------------------- */
